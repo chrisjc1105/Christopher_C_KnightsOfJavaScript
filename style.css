@@ -45,16 +45,28 @@ body {
     background-color: none;
 }
 
-.attack {
+.attackOne {
     height: 350px;
     width: 360px;
     background: linear-gradient(-90deg, rgba(0,255,0, 0.7), rgba(255,0,0,0) 90.71%); border-top-right-radius: 80%; border-bottom-right-radius: 80%";
 }
 
-.damage {
+.attackTwo {
+    height: 350px;
+    width: 360px;
+    background: linear-gradient(-270deg, rgba(0,255,0, 0.7), rgba(255,0,0,0) 90.71%); border-top-left-radius: 80%; border-bottom-left-radius: 80%";
+}
+
+.damageOne {
     height: 350px;
     width: 350px;
     background: linear-gradient(-90deg, rgba(255,0,0,0), rgba(255,0,0,.3) 70.71%);
+}
+
+.damageTwo {
+    height: 350px;
+    width: 350px;
+    background: linear-gradient(-270deg, rgba(255,0,0,0), rgba(255,0,0,.3) 70.71%);
 }
 
 #playerOneHealth,
@@ -79,4 +91,10 @@ button {
     color: white;
     font-weight: 600;
     font-size: 24px;
+}
+
+.background-design {
+    background-image: url(https://as2.ftcdn.net/v2/jpg/06/75/30/27/1000_F_675302770_fEicD9h69jThMNQURvumtDXpNHXx5z63.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
