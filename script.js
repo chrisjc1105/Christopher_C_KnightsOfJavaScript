@@ -22,8 +22,11 @@ function changePlayer() {
 
         // checks if the player has reached 0 health
         if (playerTwoHealthNum <= 0) {
+            // logs the health of player two to the console. we will compare this to what shows on 
+            // screen to make sure that it does not dig into the negative
+            console.log(playerTwoHealthNum);
             // ensures health does not dig into the negative
-            playerTwoHealth = 0;
+            playerTwoHealth.innerHTML = 0;
             // ends the game
             gameOver();
         }
@@ -37,25 +40,26 @@ function changePlayer() {
         }
     } else {
         let playerOneHealth = document.getElementById("playerOneHealth");
-        // converts the innerHTML from string to a number and stores it in a variable
+
         let playerOneHealthNum = Number(playerOneHealth.innerHTML);
-        // reduces by a random amount 
+
         playerOneHealthNum -= Math.round((Math.random() * 15) + 5);
-        // resets the HTML to the new value
+
         playerOneHealth.innerHTML = playerOneHealthNum;
 
-        // checks if the player has reached 0 health
         if (playerOneHealthNum <= 0) {
-            // ensures health does not dig into the negative
-            playerOneHealth = 0;
-            // ends the game
+            console.log(playerOneHealthNum);
+            // logs the health of player one to the console. we will compare this to what shows on 
+            // screen to make sure that it does not dig into the negative
+            playerOneHealth.innerHTML = 0;
+
             gameOver();
         }
         else {
-            // switch to the next player and change the UI's display / behavior
+
             gameState.whoseTurn = 1;
 
-            // grabs the 'playerName' element and changes the player's turn display
+
             let playerName = document.getElementById("playerName");
             playerName.innerHTML = `Player ${gameState.whoseTurn}`;
         }
@@ -154,8 +158,7 @@ function attackPlayerTwo() {
     }
 }
 
-// function that allows the player two attack button to reduce the player one's
-// health
+
 function attackPlayerOne() {
 
     function changeButtonStatus() {
@@ -171,40 +174,31 @@ function attackPlayerOne() {
     }
 
     function animatePlayer() {
-        // an array containing the images using in player one's animation
-        // the indices are later used to cycle / "animate" when the player attacks
+
         let playerTwoFrames = [
             "./images/L_Idle.png",
             "./images/L_Attack.png"
         ];
 
         let playerSprite = document.getElementById("playerTwoSprite");
-        // function we will call in setTimeout, before the frames change back
-        // the idle stance
-        // in other words, we set to the attack sprite, wait 3 seconds,
-        // then set it back to the idle sprite
+
         playerSprite.src = playerTwoFrames[1];
 
-        // removes the 'idle' class from the player sprite
+
         playerSprite.classList.remove("idle");
-        // adds the 'attack' class to the player sprite
-        // ** CHECK THE CSS TO NOTE THE CHANGES MADE **
+
         playerSprite.classList.add("attackTwo");
 
-        // grabs the enemy sprite
+
         let enemySprite = document.getElementById("playerOneSprite");
         let enemyDamage = document.getElementById("SFX_PlayerDamage");
-        // removes the 'idle' class from the enemy sprite
+
         enemySprite.classList.remove("idle");
-        // adds the 'attack' class to the enemy sprite
-        // ** CHECK THE CSS TO NOTE THE CHANGES MADE **
+
         enemySprite.classList.add("damageTwo");
-        // sound that plays when enemy takes damage
+
         enemyDamage.play();
 
-        // the function we will call in the setTimeOut method below
-        // after 350 milliseconds
-        // this function will execute this block of code
         function changePlayerTwoSprite() {
             enemySprite.classList.remove("damageTwo");
             enemySprite.classList.add("idle");
