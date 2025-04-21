@@ -40,26 +40,28 @@ function changePlayer() {
         }
     } else {
         let playerOneHealth = document.getElementById("playerOneHealth");
-
+        // changes the innerHTML from a string to a number and stores it in a var
         let playerOneHealthNum = Number(playerOneHealth.innerHTML);
-
+        // lowers the health of player one by a random amount (between 5 and 15)
         playerOneHealthNum -= Math.round((Math.random() * 15) + 5);
-
+        // resets the HTML to the new value 
         playerOneHealth.innerHTML = playerOneHealthNum;
 
+        // checks if the player has reached 0 health
         if (playerOneHealthNum <= 0) {
-            console.log(playerOneHealthNum);
             // logs the health of player one to the console. we will compare this to what shows on 
             // screen to make sure that it does not dig into the negative
+            console.log(playerOneHealthNum);
+            // makes sure that the players health doesnt go below 0 
             playerOneHealth.innerHTML = 0;
-
+            // cues the game over screen 
             gameOver();
         }
         else {
-
+            // switches to the next player and changes the graphical layout 
             gameState.whoseTurn = 1;
 
-
+            // changes to display which player is going next
             let playerName = document.getElementById("playerName");
             playerName.innerHTML = `Player ${gameState.whoseTurn}`;
         }
@@ -120,6 +122,9 @@ function attackPlayerTwo() {
         playerSprite.classList.remove("idle");
         // adds the 'attack' class to the player sprite
         // ** CHECK THE CSS TO NOTE THE CHANGES MADE **
+
+        // *** attackOne, damageOne, attackTwo, and damageTwo were added so the players can have
+        // different effects for when they attack ***
         playerSprite.classList.add("attackOne");
 
         // grabs the enemy sprite
@@ -162,6 +167,7 @@ function attackPlayerTwo() {
 function attackPlayerOne() {
 
     function changeButtonStatus() {
+        // does the same as the previous changeButtonStatus, except it affects the players inversely
         let playerTwoAttackButton = document.getElementById("playerTwoAttack");
         playerTwoAttackButton.disabled = false;
         playerTwoAttackButton.classList.add("active");
@@ -174,19 +180,23 @@ function attackPlayerOne() {
     }
 
     function animatePlayer() {
-
+        // this array now uses the animation used for player two 
+        // cycles through when attacking, just like before with player one
         let playerTwoFrames = [
             "./images/L_Idle.png",
             "./images/L_Attack.png"
         ];
-
+    
         let playerSprite = document.getElementById("playerTwoSprite");
-
+        // same as before, we're setting it to where the attack hits for 3 
+        // seconds before going back to the idle state 
         playerSprite.src = playerTwoFrames[1];
 
-
+        // goes through the cycle of adding and removing classes based on the needed state 
+        // of the player 
         playerSprite.classList.remove("idle");
-
+        // *** attackOne, damageOne, attackTwo, and damageTwo were added so the players can have
+        // different effects for when they attack ***
         playerSprite.classList.add("attackTwo");
 
 
@@ -211,6 +221,10 @@ function attackPlayerOne() {
         setTimeout(changePlayerTwoSprite, 350);
     }
 
+    // shorthand code for all that we're doing, which is 
+    // animating the player
+    // changing the button status 
+    // and changing the player! 
     if (gameState.whoseTurn === 2) {
         animatePlayer();
         changeButtonStatus();
